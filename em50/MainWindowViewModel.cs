@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Windows.Controls;
-using em50.Views;
-using MyServicesLibrary.Controls.UniversalDataGrid;
+﻿using em50.Views;
 using MyServicesLibrary.SideMenu;
-using MyServicesLibrary.ViewModelsBase;
 
 namespace em50;
 public class MainWindowViewModel : BaseViewModel
@@ -39,8 +32,7 @@ public class MainWindowViewModel : BaseViewModel
     public MainWindowViewModel()
     {
         MenuPanelMaxWidth = MenuPanelMaxWidthValue;
-        string settingPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.db");
-        SideMenu = new MyServicesLibrary.SideMenu.SideMenu(settingPath);
+        SideMenu = new MyServicesLibrary.SideMenu.SideMenu(Global.settingpath);
         SideMenu.OnMenuChoise += MainMenuChoiseCommand;
     }
 
