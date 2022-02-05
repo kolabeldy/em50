@@ -12,7 +12,6 @@ global using System.Collections.ObjectModel;
 global using System.Windows.Controls.Primitives;
 global using System.Reflection;
 global using System.Data;
-global using System.Windows.Data;
 
 global using MaterialDesignThemes.Wpf;
 
