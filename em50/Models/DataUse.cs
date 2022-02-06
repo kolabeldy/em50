@@ -20,6 +20,41 @@ public class DataUse
     public double DiffCost { get; set; }
     public double DiffProc { get; set; }
 
+    public static List<DataUse> Get()
+    {
+        var res = Get<DataUse>();
+        return Get<DataUse>();
+    }
+    public static List<T> Get<T>()
+    {
+        List<T> result = new();
+        List<DataUse> list = new();
+        string sql = "SELECT Period, IdCC, IdProduct, ProductName, IdER, ERName, UnitName, Fact, Plan, Diff, FactCost, PlanCost, DiffCost FROM AnalysisUseFromSelected_Period_CC ORDER BY Period, IdCC, IdProduct, IdER";
+        //var resourceManager = Properties.Resources.ResourceManager;
+        DataTable dt = new DataTable();
+        dt = Sqlite.Select(Global.dbpath, sql);
+        list = (from DataRow dr in dt.Rows
+                select new DataUse()
+                {
+                    Period = Convert.ToInt32(dr["Period"]),
+                    IdCC = Convert.ToInt32(dr["IdCC"]),
+                    IdProduct = Convert.ToInt32(dr["IdProduct"]),
+                    ProductName = dr["ProductName"].ToString(),
+                    IdER = Convert.ToInt32(dr["IdER"]),
+                    ERName = dr["ERName"].ToString(),
+                    UnitName = dr["UnitName"].ToString(),
+                    Fact = Convert.ToDouble(dr["Fact"]),
+                    Plan = Convert.ToDouble(dr["Plan"]),
+                    Diff = Convert.ToDouble(dr["Diff"]),
+                    FactCost = Convert.ToDouble(dr["FactCost"]),
+                    PlanCost = Convert.ToDouble(dr["PlanCost"]),
+                    DiffCost = Convert.ToDouble(dr["DiffCost"]),
+                    //DiffProc = Convert.ToDouble(dr["DiffProc"]),
+                }).ToList();
+        result.AddRange((IEnumerable<T>)list);
+        return result;
+    }
+
     public static List<DataUse> GetER()
     {
         return GetER<DataUse>();

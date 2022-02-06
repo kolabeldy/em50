@@ -1,5 +1,6 @@
 ﻿using MyServicesLibrary.Controls.CheckedTree;
 using MyServicesLibrary.Controls.FilterPanelCheckedTree;
+using System.Collections.ObjectModel;
 
 namespace em50.MenuPages.Analysis.FromCC;
 public class AnalysisFromCCViewModel : BaseViewModel
@@ -14,6 +15,16 @@ public class AnalysisFromCCViewModel : BaseViewModel
         }
     }
 
+    private MyTable _MyTable;
+    public MyTable MyTable
+    {
+        get => _MyTable;
+        set
+        {
+            Set(ref _MyTable, value);
+        }
+    }
+
     // Объявление свойства - FilterPanel
     public FilterPanel FilterPanel { get; set; }
 
@@ -21,6 +32,16 @@ public class AnalysisFromCCViewModel : BaseViewModel
     private List<IdName> periodsFilterList = new();
     private List<IdName> ccFilterList = new();
     private List<IdName> erFilterList = new();
+
+    private ObservableCollection<TableData> _TableData;
+    public ObservableCollection<TableData> TableData
+    {
+        get => _TableData;
+        set
+        {
+            Set(ref _TableData, value);
+        }
+    }
 
     public AnalysisFromCCViewModel()
     {
@@ -34,7 +55,10 @@ public class AnalysisFromCCViewModel : BaseViewModel
         treeFilterCollections.Add(new TreeFilterCollection { FilterCollection = erTree, Title = "Энергоресурсы:", InitType = TreeInitType.All });
         FilterPanel = new FilterPanel(treeFilterCollections);
 
+        MyTable = new MyTable(this);
+
         FilterPanel.ViewModel.onChange += FiltersOnChangeHandler;
+
         Refresh();
     }
 
@@ -165,6 +189,7 @@ public class AnalysisFromCCViewModel : BaseViewModel
         List<FilterTable> filtersTable = GetFilters();
         FilterTable.Delete("Analysis", "AnalysisFromCC");
         FilterTable.AddRange(filtersTable);
+        TableData = new ObservableCollection<TableData>(Models.TableData.Get(DataUse.Get()));
     }
 
     #endregion

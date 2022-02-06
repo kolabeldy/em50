@@ -1,0 +1,212 @@
+﻿<UserControl x:Class="em50.MenuPages.Analysis.FromCC.MyTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             xmlns:conv="clr-namespace:MyServicesLibrary.Converters;assembly=MyServicesLibrary"
+             mc:Ignorable="d" 
+             Name="TableFrame"
+             d:DesignHeight="300" d:DesignWidth="1000" >
+    
+    <UserControl.Resources>
+        <Style x:Key="mdDataGridTextColumnStyle" TargetType="{x:Type TextBlock}" 
+               BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+
+        <Style x:Key="mdDataGridTextColumnHeaderStyleLeft" TargetType="{x:Type DataGridColumnHeader}"
+               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Background" Value="{StaticResource PrimaryHueLightBrush}" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="{Binding}"
+                                   FontWeight="DemiBold"
+                                   TextAlignment="Right" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="mdDataGridTextColumnHeaderStyleRight" TargetType="{x:Type DataGridColumnHeader}"
+               BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="Background" Value="{StaticResource PrimaryHueLightBrush}" />
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="{Binding}"
+                                   FontWeight="DemiBold"
+                                   TextAlignment="Right" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Border BorderBrush="DarkGray"
+            BorderThickness="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="Auto">
+
+        <DataGrid Margin="10"
+                  x:Name="dataGridCC"
+                  MaxHeight="768"
+                  Width="840"
+                  BorderBrush="DarkGray"
+                  BorderThickness="1"
+                  HorizontalAlignment="Left"
+                  CanUserAddRows="False" 
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  ScrollViewer.CanContentScroll="True"
+                  VerticalScrollBarVisibility="Auto"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding TableData}">
+                  <!--md:DataGridAssist.CellPadding="10 5"
+                  md:DataGridAssist.ColumnHeaderPadding="10 10"-->
+
+
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn
+                    Binding="{Binding PeriodStr}"
+                    Header="Период"
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
+                </DataGridTextColumn>
+
+                <DataGridTextColumn
+                    Binding="{Binding IdCC}"
+                    Header="ЦЗ"
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn
+                    MinWidth="180"
+                    Header="Энергоресурс"
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,2">
+                                    <TextBlock Text="код: " 
+                                               FontSize="9"
+                                               HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding IdER}" 
+                                               FontSize="9"
+                                               HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding ERName}" 
+                                           HorizontalAlignment="Left"
+                                           Margin="0,2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn
+                    Header="Разм."
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding UnitName}" 
+                                           Margin="0,2"/>
+                                <TextBlock Text="тыс. руб." 
+                                           FontWeight="DemiBold"
+                                           Margin="0,2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn
+                    MinWidth="100"
+                    Header="Факт"
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding FactUse, StringFormat={}{0:N1}}" 
+                                           HorizontalAlignment="Right"
+                                           Margin="0,2"/>
+                                <TextBlock Text="{Binding FactUseCost, StringFormat={}{0:N1}}" 
+                                           HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
+                                           Margin="0,2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn
+                    MinWidth="100"
+                    Header="План"
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding PlanUse, StringFormat={}{0:N1}}" 
+                                           
+                                           HorizontalAlignment="Right"
+                                           Margin="0,2"/>
+                                <TextBlock Text="{Binding PlanUseCost, StringFormat={}{0:N1}}" 
+                                           HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
+                                           Margin="0,2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn
+                    MinWidth="100"
+                    Header="Откл."
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding DiffUse, StringFormat={}{0:N1}}" 
+                                           
+                                           HorizontalAlignment="Right"
+                                           Margin="0,2"/>
+                                <TextBlock Text="{Binding DiffUseCost, StringFormat={}{0:N1}}" 
+                                           HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
+                                           Margin="0,2"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn
+                    MinWidth="100"
+                    Binding="{Binding DiffProc, StringFormat=N1}"
+                    Header="Откл., %"
+                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextAlignment" Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Border>
+
+</UserControl>

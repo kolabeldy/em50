@@ -12,6 +12,7 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.1" />
     <PackageReference Include="SQLitePCLRaw.bundle_winsqlite3" Version="2.0.7" />
+    <PackageReference Include="System.ObjectModel" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
