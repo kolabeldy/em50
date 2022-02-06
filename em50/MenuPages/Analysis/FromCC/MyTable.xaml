@@ -56,17 +56,18 @@
     </UserControl.Resources>
 
     <Border BorderBrush="DarkGray"
-            BorderThickness="0"
+            BorderThickness="1"
+            Background="WhiteSmoke"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Width="Auto">
+            Width="Auto"
+            Height="772">
 
         <DataGrid Margin="10"
                   x:Name="dataGridCC"
-                  MaxHeight="768"
+                  MaxHeight="766"
                   Width="840"
-                  BorderBrush="DarkGray"
-                  BorderThickness="1"
+                  
                   HorizontalAlignment="Left"
                   CanUserAddRows="False" 
                   AutoGenerateColumns="False"
