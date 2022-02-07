@@ -10,7 +10,7 @@
         TextOptions.TextRenderingMode="Auto"
         Title="Энергомонитор 5.0" 
         Height="960" 
-        Width="1860" WindowStartupLocation="CenterScreen" 
+        Width="1650" WindowStartupLocation="CenterScreen" 
         ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>

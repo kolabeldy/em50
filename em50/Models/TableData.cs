@@ -27,6 +27,7 @@ public class TableData
 
         result = (from o in sourceData
                   group o by new { o.Period, o.IdCC, o.IdER } into gr
+                  orderby gr.Key.Period, gr.Key.IdCC, gr.Key.IdER
                   select new TableData()
                   {
                       Period = gr.Key.Period,

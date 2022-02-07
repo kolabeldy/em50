@@ -3,9 +3,10 @@
 namespace em50;
 public partial class MainWindow : Window
 {
+    public MainWindowViewModel model;
     public MainWindow()
     {
-        MainWindowViewModel model = new();
+        model = new();
         DataContext = model;
         InitializeComponent();
     }

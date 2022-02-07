@@ -24,11 +24,25 @@
                  VerticalAlignment="Top"
                  HorizontalAlignment="Stretch">
             <StackPanel Orientation="Horizontal">
+                <Button ToolTip="Главное окно"
+                        Margin="10,0,0,0"
+                        HorizontalContentAlignment="Center"
+                        Foreground="White"
+                        Height="40"
+                        Padding="5"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        VerticalAlignment="Center"
+                        Command="{Binding Back_Command}">
+                    <md:PackIcon
+                        Kind="ArrowBack"
+                        Height="25"
+                        Width="25" />
+                </Button>
                 <TextBlock Text="{Binding Caption}"
                        Foreground="White"
                        VerticalAlignment="Center"
                        Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
-                       Margin="15,0" />
+                       Margin="25,0" />
                 <UserControl x:Name="filterPanel" 
                          Content="{Binding FilterPanel}"  
                          VerticalAlignment="Center" />

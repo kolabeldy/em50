@@ -1,10 +1,8 @@
-﻿using MyServicesLibrary.Controls.CheckedTree;
-using MyServicesLibrary.Controls.FilterPanelCheckedTree;
-using System.Collections.ObjectModel;
-
-namespace em50.MenuPages.Analysis.FromCC;
+﻿namespace em50.MenuPages.Analysis.FromCC;
 public class AnalysisFromCCViewModel : BaseViewModel
 {
+    MainWindow mainwin = Application.Current.MainWindow as MainWindow;
+
     private string _Caption = "Анализ по центрам затрат";
     public string Caption
     {
@@ -61,6 +59,21 @@ public class AnalysisFromCCViewModel : BaseViewModel
 
         Refresh();
     }
+
+    private RelayCommand _Back_Command;
+    public RelayCommand Back_Command
+    {
+        get
+        {
+            return _Back_Command ??
+                (_Back_Command = new RelayCommand(obj =>
+                {
+                    mainwin.model.MenuPanelMaxWidth = 2000;
+                    mainwin.model.ContentPanel.Content = null;
+                }));
+        }
+    }
+
 
     #region Подготовка коллекция для передачи в модуль Фильтр
 

@@ -62,7 +62,7 @@ public class MainWindowViewModel : BaseViewModel
     }
     public void AnalysisFromCCShow()
     {
-        MenuPanelMaxWidth = MenuPanelMaxWidthValue;
+        MenuPanelMaxWidth = 0;
         ContentPanel.Content = AnalysisFromCC.GetInstance();
     }
 

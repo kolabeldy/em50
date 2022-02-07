@@ -14,7 +14,7 @@
              xmlns:conv="clr-namespace:MyServicesLibrary.Converters;assembly=MyServicesLibrary"
              mc:Ignorable="d" 
              Name="TableFrame"
-             d:DesignHeight="300" d:DesignWidth="1000" >
+             d:DesignHeight="800" d:DesignWidth="800" >
     
     <UserControl.Resources>
         <Style x:Key="mdDataGridTextColumnStyle" TargetType="{x:Type TextBlock}" 
@@ -55,19 +55,12 @@
         </Style>
     </UserControl.Resources>
 
-    <Border BorderBrush="DarkGray"
-            BorderThickness="1"
-            Background="WhiteSmoke"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Width="Auto"
-            Height="772">
-
-        <DataGrid Margin="10"
+        <DataGrid Margin="0"
                   x:Name="dataGridCC"
-                  MaxHeight="766"
-                  Width="840"
-                  
+                  Height="768"
+                  Width="795"
+                  BorderBrush="DarkGray"
+                  BorderThickness="1"
                   HorizontalAlignment="Left"
                   CanUserAddRows="False" 
                   AutoGenerateColumns="False"
@@ -84,18 +77,20 @@
                 
                 <DataGridTextColumn
                     Binding="{Binding PeriodStr}"
+                    Width="90"
                     Header="Период"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                 </DataGridTextColumn>
 
                 <DataGridTextColumn
+                    Width="60"
                     Binding="{Binding IdCC}"
                     Header="ЦЗ"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                 </DataGridTextColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="180"
+                    Width="170"
                     Header="Энергоресурс"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -118,6 +113,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
+                    Width="90"
                     Header="Разм."
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -134,7 +130,7 @@
                 </DataGridTemplateColumn>
                 
                 <DataGridTemplateColumn
-                    MinWidth="100"
+                    Width="90"
                     Header="Факт"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -153,7 +149,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="100"
+                    Width="90"
                     Header="План"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -173,7 +169,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="100"
+                    Width="90"
                     Header="Откл."
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -193,7 +189,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn
-                    MinWidth="100"
+                    Width="90"
                     Binding="{Binding DiffProc, StringFormat=N1}"
                     Header="Откл., %"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}"
@@ -208,6 +204,5 @@
             </DataGrid.Columns>
 
         </DataGrid>
-    </Border>
 
 </UserControl>
