@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="em50.MenuPages.Analysis.FromCC.MyTable"
+﻿<UserControl x:Class="em50.MenuPages.Analysis.FromCC.MyDetailTable"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -58,44 +58,40 @@
         <DataGrid Margin="0"
                   x:Name="dataGridCC"
                   Height="768"
-                  Width="810"
+                  Width="736"
                   BorderBrush="DarkGray"
                   BorderThickness="1"
                   HorizontalAlignment="Left"
-                  IsSynchronizedWithCurrentItem="True"
-                  SelectionMode="Single"
-                  SelectionUnit="FullRow"
                   CanUserAddRows="False" 
                   AutoGenerateColumns="False"
                   HeadersVisibility="Column"
                   ScrollViewer.CanContentScroll="True"
                   VerticalScrollBarVisibility="Auto"
                   IsReadOnly="True"
-                  ItemsSource="{Binding TableData}" 
-                  SelectedItem="{Binding SelectedRow}" SelectionChanged="dataGridCC_SelectionChanged_1">
+                  ItemsSource="{Binding DetailTableData}">
                   <!--md:DataGridAssist.CellPadding="10 5"
                   md:DataGridAssist.ColumnHeaderPadding="10 10"-->
 
 
             <DataGrid.Columns>
                 
-                <DataGridTextColumn
+                <!--<DataGridTextColumn
                     Binding="{Binding PeriodStr}"
                     MinWidth="90"
                     Header="Период"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
-                </DataGridTextColumn>
+                </DataGridTextColumn>-->
 
-                <DataGridTextColumn
+                <!--<DataGridTextColumn
                     MinWidth="60"
                     Binding="{Binding IdCC}"
                     Header="ЦЗ"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
-                </DataGridTextColumn>
+                </DataGridTextColumn>-->
 
                 <DataGridTemplateColumn
-                    MinWidth="184"
-                    Header="Энергоресурс"
+                    MinWidth="200"
+                    Header="Продукт"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -104,11 +100,11 @@
                                     <TextBlock Text="код: " 
                                                FontSize="9"
                                                HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding IdER}" 
+                                    <TextBlock Text="{Binding IdProduct}" 
                                                FontSize="9"
                                                HorizontalAlignment="Left"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding ERName}" 
+                                <TextBlock Text="{Binding ProductName}" 
                                            HorizontalAlignment="Left"
                                            Margin="0,2"/>
                             </StackPanel>
@@ -140,10 +136,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding FactUse, StringFormat={}{0:N1}}" 
+                                <TextBlock Text="{Binding Fact, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
                                            Margin="0,2"/>
-                                <TextBlock Text="{Binding FactUseCost, StringFormat={}{0:N1}}" 
+                                <TextBlock Text="{Binding FactCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
                                            FontWeight="DemiBold"
                                            Margin="0,2"/>
@@ -159,11 +155,11 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding PlanUse, StringFormat={}{0:N1}}" 
+                                <TextBlock Text="{Binding Plan, StringFormat={}{0:N1}}" 
                                            
                                            HorizontalAlignment="Right"
                                            Margin="0,2"/>
-                                <TextBlock Text="{Binding PlanUseCost, StringFormat={}{0:N1}}" 
+                                <TextBlock Text="{Binding PlanCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
                                            FontWeight="DemiBold"
                                            Margin="0,2"/>
@@ -179,11 +175,11 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding DiffUse, StringFormat={}{0:N1}}" 
+                                <TextBlock Text="{Binding Diff, StringFormat={}{0:N1}}" 
                                            
                                            HorizontalAlignment="Right"
                                            Margin="0,2"/>
-                                <TextBlock Text="{Binding DiffUseCost, StringFormat={}{0:N1}}" 
+                                <TextBlock Text="{Binding DiffCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
                                            FontWeight="DemiBold"
                                            Margin="0,2"/>

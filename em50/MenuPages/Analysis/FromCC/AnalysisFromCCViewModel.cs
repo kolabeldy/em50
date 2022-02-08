@@ -2,6 +2,7 @@
 public class AnalysisFromCCViewModel : BaseViewModel
 {
     MainWindow mainwin = Application.Current.MainWindow as MainWindow;
+    private bool isFirstLoad = true;
 
     private string _Caption = "Анализ по центрам затрат";
     public string Caption
@@ -13,6 +14,8 @@ public class AnalysisFromCCViewModel : BaseViewModel
         }
     }
 
+
+
     private MyTable _MyTable;
     public MyTable MyTable
     {
@@ -20,6 +23,15 @@ public class AnalysisFromCCViewModel : BaseViewModel
         set
         {
             Set(ref _MyTable, value);
+        }
+    }
+    private MyDetailTable _MyDetailTable;
+    public MyDetailTable MyDetailTable
+    {
+        get => _MyDetailTable;
+        set
+        {
+            Set(ref _MyDetailTable, value);
         }
     }
 
@@ -31,6 +43,8 @@ public class AnalysisFromCCViewModel : BaseViewModel
     private List<IdName> ccFilterList = new();
     private List<IdName> erFilterList = new();
 
+    public List<DataUse> DataTableUse;
+
     private ObservableCollection<TableData> _TableData;
     public ObservableCollection<TableData> TableData
     {
@@ -38,6 +52,28 @@ public class AnalysisFromCCViewModel : BaseViewModel
         set
         {
             Set(ref _TableData, value);
+        }
+    }
+
+    private TableData _SelectedRow;
+    public TableData SelectedRow
+    {
+        get => _SelectedRow;
+        set
+        {
+            Set(ref _SelectedRow, value);
+            if (!isFirstLoad)
+                SetDetailData(_SelectedRow);
+        }
+    }
+
+    private ObservableCollection<DataUse> _DetailTableData;
+    public ObservableCollection<DataUse> DetailTableData
+    {
+        get => _DetailTableData;
+        set
+        {
+            Set(ref _DetailTableData, value);
         }
     }
 
@@ -54,10 +90,12 @@ public class AnalysisFromCCViewModel : BaseViewModel
         FilterPanel = new FilterPanel(treeFilterCollections);
 
         MyTable = new MyTable(this);
+        MyDetailTable = new MyDetailTable(this);
 
         FilterPanel.ViewModel.onChange += FiltersOnChangeHandler;
 
         Refresh();
+        isFirstLoad = false;
     }
 
     private RelayCommand _Back_Command;
@@ -85,9 +123,6 @@ public class AnalysisFromCCViewModel : BaseViewModel
     private List<TreeNode> PeriodTree()
     {
         List<TreeNode> result = new();
-        //var descYears = from u in Period.Years
-        //                orderby u descending
-        //                select u;
         foreach (int r in Period.Years)
         {
             result.Add(new TreeNode()
@@ -202,7 +237,32 @@ public class AnalysisFromCCViewModel : BaseViewModel
         List<FilterTable> filtersTable = GetFilters();
         FilterTable.Delete("Analysis", "AnalysisFromCC");
         FilterTable.AddRange(filtersTable);
-        TableData = new ObservableCollection<TableData>(Models.TableData.Get(DataUse.Get()));
+        DataTableUse = DataUse.Get();
+        TableData = new ObservableCollection<TableData>(Models.TableData.Get(DataTableUse));
+        //DetailTableData = new ObservableCollection<DataUse>(DataTableUse);
+    }
+
+    private void SetDetailData(TableData row)
+    {
+        int period = row.Period;
+        int idcc = row.IdCC;
+        int ider = row.IdER;
+        DetailTableData = new ObservableCollection<DataUse>(from o in DataTableUse
+                                                            where o.Period == period && o.IdCC == idcc && o.IdER == ider
+                                                            select new DataUse()
+                                                            {
+                                                                IdProduct = o.IdProduct,
+                                                                ProductName = o.ProductName,
+                                                                UnitName = o.UnitName,
+                                                                Fact = o.Fact,
+                                                                Plan = o.Plan,
+                                                                Diff = o.Diff,
+                                                                FactCost = o.FactCost,
+                                                                PlanCost = o.PlanCost,
+                                                                DiffCost = o.DiffCost,
+                                                                //DiffProc = Convert.ToDouble(dr["DiffProc"]),
+                                                            });
+
     }
 
     #endregion
