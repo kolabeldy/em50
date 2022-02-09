@@ -72,7 +72,7 @@
                   VerticalScrollBarVisibility="Auto"
                   IsReadOnly="True"
                   ItemsSource="{Binding TableData}" 
-                  SelectedItem="{Binding SelectedRow}" SelectionChanged="dataGridCC_SelectionChanged_1">
+                  SelectedItem="{Binding SelectedRow, Mode=TwoWay}" >
                   <!--md:DataGridAssist.CellPadding="10 5"
                   md:DataGridAssist.ColumnHeaderPadding="10 10"-->
 
@@ -124,9 +124,10 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding UnitName}" 
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="тыс. руб." 
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -142,10 +143,11 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding FactUse, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="{Binding FactUseCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -162,10 +164,11 @@
                                 <TextBlock Text="{Binding PlanUse, StringFormat={}{0:N1}}" 
                                            
                                            HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="{Binding PlanUseCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -182,10 +185,11 @@
                                 <TextBlock Text="{Binding DiffUse, StringFormat={}{0:N1}}" 
                                            
                                            HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="{Binding DiffUseCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>

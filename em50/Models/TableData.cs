@@ -42,7 +42,7 @@ public class TableData
                       FactUseCost = gr.Sum(m => m.FactCost),
                       PlanUseCost = gr.Sum(m => m.PlanCost),
                       DiffUseCost = gr.Sum(m => m.DiffCost),
-                      //DiffProc = Convert.ToDouble(dr["DiffProc"]),
+                      DiffProc = Math.Round(gr.Sum(m => m.Diff), 1) * 100 / Math.Round(gr.Sum(m => m.Plan), 1)
                   }).ToList();
 
         return result;

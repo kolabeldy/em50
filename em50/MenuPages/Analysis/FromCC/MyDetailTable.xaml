@@ -75,20 +75,6 @@
 
             <DataGrid.Columns>
                 
-                <!--<DataGridTextColumn
-                    Binding="{Binding PeriodStr}"
-                    MinWidth="90"
-                    Header="Период"
-                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
-                </DataGridTextColumn>-->
-
-                <!--<DataGridTextColumn
-                    MinWidth="60"
-                    Binding="{Binding IdCC}"
-                    Header="ЦЗ"
-                    HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
-                </DataGridTextColumn>-->
-
                 <DataGridTemplateColumn
                     MinWidth="200"
                     Header="Продукт"
@@ -120,9 +106,10 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding UnitName}" 
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="тыс. руб." 
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -138,10 +125,11 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding Fact, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="{Binding FactCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -158,10 +146,11 @@
                                 <TextBlock Text="{Binding Plan, StringFormat={}{0:N1}}" 
                                            
                                            HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="{Binding PlanCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -178,10 +167,11 @@
                                 <TextBlock Text="{Binding Diff, StringFormat={}{0:N1}}" 
                                            
                                            HorizontalAlignment="Right"
+                                           FontWeight="DemiBold"
                                            Margin="0,2"/>
                                 <TextBlock Text="{Binding DiffCost, StringFormat={}{0:N1}}" 
                                            HorizontalAlignment="Right"
-                                           FontWeight="DemiBold"
+                                           FontWeight="Normal"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -190,7 +180,7 @@
 
                 <DataGridTextColumn
                     MinWidth="90"
-                    Binding="{Binding DiffProc, StringFormat=N1}"
+                    Binding="{Binding DiffProc, StringFormat={}{0:N1}}"
                     Header="Откл., %"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}">

@@ -29,7 +29,7 @@ public class DataUse
     {
         List<T> result = new();
         List<DataUse> list = new();
-        string sql = "SELECT Period, IdCC, IdProduct, ProductName, IdER, ERName, UnitName, Fact, Plan, Diff, FactCost, PlanCost, DiffCost FROM AnalysisUseFromSelected_Period_CC ORDER BY Period, IdCC, IdProduct, IdER";
+        string sql = "SELECT Period, IdCC, IdProduct, ProductName, IdER, ERName, UnitName, Fact, Plan, Diff, FactCost, PlanCost, DiffCost, DiffProc FROM AnalysisUseFromSelected_Period_CC ORDER BY Period, IdCC, IdProduct, IdER";
         //var resourceManager = Properties.Resources.ResourceManager;
         DataTable dt = new DataTable();
         dt = Sqlite.Select(Global.dbpath, sql);
@@ -48,8 +48,7 @@ public class DataUse
                     Diff = Convert.ToDouble(dr["Diff"]),
                     FactCost = Convert.ToDouble(dr["FactCost"]),
                     PlanCost = Convert.ToDouble(dr["PlanCost"]),
-                    DiffCost = Convert.ToDouble(dr["DiffCost"]),
-                    //DiffProc = Convert.ToDouble(dr["DiffProc"]),
+                    DiffCost = Convert.ToDouble(dr["DiffCost"])
                 }).ToList();
         result.AddRange((IEnumerable<T>)list);
         return result;

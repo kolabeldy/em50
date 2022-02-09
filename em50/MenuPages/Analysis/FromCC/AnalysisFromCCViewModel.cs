@@ -106,8 +106,8 @@ public class AnalysisFromCCViewModel : BaseViewModel
             return _Back_Command ??
                 (_Back_Command = new RelayCommand(obj =>
                 {
-                    mainwin.model.MenuPanelMaxWidth = 2000;
-                    mainwin.model.ContentPanel.Content = null;
+                    //mainwin.model.MenuPanelMaxWidth = 2000;
+                    //mainwin.model.ContentPanel.Content = null;
                 }));
         }
     }
@@ -260,7 +260,7 @@ public class AnalysisFromCCViewModel : BaseViewModel
                                                                 FactCost = o.FactCost,
                                                                 PlanCost = o.PlanCost,
                                                                 DiffCost = o.DiffCost,
-                                                                //DiffProc = Convert.ToDouble(dr["DiffProc"]),
+                                                                DiffProc = Math.Round(o.Diff, 1) * 100 / Math.Round(o.Plan, 1)
                                                             });
 
     }

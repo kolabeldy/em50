@@ -9,11 +9,5 @@
             DataContext = model;
             InitializeComponent();
         }
-
-
-        private void dataGridCC_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            model.SelectedRow = (TableData)dataGridCC.SelectedItem;
-        }
     }
 }
