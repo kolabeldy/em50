@@ -77,6 +77,16 @@ public class AnalysisFromCCViewModel : BaseViewModel
         }
     }
 
+    private string _DetailTableCaption = "Распределение ресурса по продуктам";
+    public string DetailTableCaption
+    {
+        get => _DetailTableCaption;
+        set
+        {
+            Set(ref _DetailTableCaption, value);
+        }
+    }
+
     public AnalysisFromCCViewModel()
     {
         periodsTree = PeriodTree();
@@ -247,6 +257,7 @@ public class AnalysisFromCCViewModel : BaseViewModel
         int period = row.Period;
         int idcc = row.IdCC;
         int ider = row.IdER;
+        string ername = row.ERName;
         DetailTableData = new ObservableCollection<DataUse>(from o in DataTableUse
                                                             where o.Period == period && o.IdCC == idcc && o.IdER == ider
                                                             select new DataUse()
@@ -260,9 +271,9 @@ public class AnalysisFromCCViewModel : BaseViewModel
                                                                 FactCost = o.FactCost,
                                                                 PlanCost = o.PlanCost,
                                                                 DiffCost = o.DiffCost,
-                                                                DiffProc = Math.Round(o.Diff, 1) * 100 / Math.Round(o.Plan, 1)
+                                                                DiffProc = Math.Round(o.Diff, 2) * 100 / Math.Round(o.Plan, 2)
                                                             });
-
+        DetailTableCaption = "Распределение ресурса (" + ider.ToString() + "_" + ername + ") по продуктам";
     }
 
     #endregion

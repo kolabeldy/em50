@@ -54,10 +54,13 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
-        <DataGrid Margin="0"
-                  x:Name="dataGridCC"
-                  Height="768"
+    <StackPanel>
+        <TextBlock Margin="0,10,0,0"
+                   Style="{StaticResource MaterialDesignHeadline6TextBlock}"
+                   Text="Использование энергоресурсов центрами затрат"/>
+        <DataGrid x:Name="dataGridCC"
+                  Margin="0,10,0,0"
+                  Height="825"
                   Width="810"
                   BorderBrush="DarkGray"
                   BorderThickness="1"
@@ -212,5 +215,6 @@
             </DataGrid.Columns>
 
         </DataGrid>
+    </StackPanel>
 
 </UserControl>
