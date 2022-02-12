@@ -1,7 +1,7 @@
 ﻿namespace em50.Models;
 public class DataUse
 {
-    //public long Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
     public int Period { get; set; }
     public int IdCC { get; set; }
@@ -29,13 +29,14 @@ public class DataUse
     {
         List<T> result = new();
         List<DataUse> list = new();
-        string sql = "SELECT Period, IdCC, IdProduct, ProductName, IdER, ERName, UnitName, Fact, Plan, Diff, FactCost, PlanCost, DiffCost, DiffProc FROM AnalysisUseFromSelected_Period_CC ORDER BY Period, IdCC, IdProduct, IdER";
+        string sql = "SELECT Id, Period, IdCC, IdProduct, ProductName, IdER, ERName, UnitName, Fact, Plan, Diff, FactCost, PlanCost, DiffCost, DiffProc FROM AnalysisUseFromSelected_Period_CC ORDER BY Period, IdCC, IdProduct, IdER";
         //var resourceManager = Properties.Resources.ResourceManager;
         DataTable dt = new DataTable();
         dt = Sqlite.Select(Global.dbpath, sql);
         list = (from DataRow dr in dt.Rows
                 select new DataUse()
                 {
+                    Id = Convert.ToInt32(dr["Id"]),
                     Period = Convert.ToInt32(dr["Period"]),
                     IdCC = Convert.ToInt32(dr["IdCC"]),
                     IdProduct = Convert.ToInt32(dr["IdProduct"]),

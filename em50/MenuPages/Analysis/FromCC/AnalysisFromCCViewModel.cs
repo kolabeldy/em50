@@ -35,6 +35,16 @@ public class AnalysisFromCCViewModel : BaseViewModel
         }
     }
 
+    private MyCausesTable _MyCausesTable;
+    public MyCausesTable MyCausesTable
+    {
+        get => _MyCausesTable;
+        set
+        {
+            Set(ref _MyCausesTable, value);
+        }
+    }
+
     // Объявление свойства - FilterPanel
     public FilterPanel FilterPanel { get; set; }
 
@@ -101,6 +111,7 @@ public class AnalysisFromCCViewModel : BaseViewModel
 
         MyTable = new MyTable(this);
         MyDetailTable = new MyDetailTable(this);
+        MyCausesTable = new MyCausesTable(this);
 
         FilterPanel.ViewModel.onChange += FiltersOnChangeHandler;
 
