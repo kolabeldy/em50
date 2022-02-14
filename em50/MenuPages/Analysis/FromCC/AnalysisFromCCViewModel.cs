@@ -73,7 +73,10 @@ public class AnalysisFromCCViewModel : BaseViewModel
         {
             Set(ref _SelectedRow, value);
             if (!isFirstLoad)
+            {
                 SetDetailData(_SelectedRow);
+                CauseTableData = null;
+            }
         }
     }
     private DataUse _SelectedDetailRow;

@@ -81,7 +81,7 @@
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn
-                    MinWidth="200"
+                    Width="2.5*"
                     Header="Продукт"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -104,7 +104,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="90"
+                    Width="1*"
                     Header="Разм."
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -122,7 +122,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="90"
+                    Width="1*"
                     Header="Факт"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -142,7 +142,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="90"
+                    Width="1*"
                     Header="План"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -163,7 +163,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="90"
+                    Width="1*"
                     Header="Откл."
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -184,7 +184,7 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTextColumn
-                    MinWidth="90"
+                    Width="1*"
                     Binding="{Binding DiffProc, StringFormat={}{0:N1}}"
                     Header="Откл., %"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleRight}"
@@ -197,7 +197,7 @@
                 </DataGridTextColumn>
 
                 <DataGridTextColumn
-                    MinWidth="90"
+                    Width="1*"
                     Binding="{Binding Id}"
                     Header="Id"
                     Visibility="Collapsed" />
