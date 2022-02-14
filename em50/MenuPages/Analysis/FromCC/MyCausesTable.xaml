@@ -80,7 +80,6 @@
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn
-                    MinWidth="200"
                     Header="Классификация"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -89,10 +88,18 @@
                                 <StackPanel Orientation="Horizontal" Margin="0,2">
                                     <TextBlock Text="код: " 
                                                FontSize="9"
+                                               FontWeight="DemiBold"
                                                HorizontalAlignment="Left"/>
                                     <TextBlock Text="{Binding IdCode}" 
                                                FontSize="9"
+                                               FontWeight="DemiBold"
                                                HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding Code2Name}" 
+                                               Margin="10,0,0,0"
+                                               FontSize="9"
+                                               FontWeight="DemiBold"
+                                               HorizontalAlignment="Left"/>
+
                                 </StackPanel>
                                 <TextBlock Text="{Binding Name}" 
                                            HorizontalAlignment="Left"
@@ -101,19 +108,18 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
+                
                 <DataGridTemplateColumn
-                    MinWidth="200"
-                    Header="Группа"
+                    Header="Признак"
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="" 
+                                <TextBlock Text="A1" 
                                             FontSize="9"
                                             HorizontalAlignment="Left"/>
-                                <TextBlock Text="{Binding Code2Name}" 
-                                           HorizontalAlignment="Left"
+                                <TextBlock Text="Внутренние. Организационные" 
+                                           HorizontalAlignment="Right"
                                            Margin="0,2"/>
                             </StackPanel>
                         </DataTemplate>
@@ -121,7 +127,6 @@
                 </DataGridTemplateColumn>
 
                 <DataGridTemplateColumn
-                    MinWidth="200"
                     Header="Откл."
                     HeaderStyle="{StaticResource mdDataGridTextColumnHeaderStyleLeft}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -139,6 +144,17 @@
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
+            
+            <DataGrid.RowDetailsTemplate >
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Note}" 
+                                   MaxWidth="700" 
+                                   Margin="20,10,10,10"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
 
         </DataGrid>
     </StackPanel>
