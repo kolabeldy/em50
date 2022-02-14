@@ -76,6 +76,17 @@ public class AnalysisFromCCViewModel : BaseViewModel
                 SetDetailData(_SelectedRow);
         }
     }
+    private DataUse _SelectedDetailRow;
+    public DataUse SelectedDetailRow
+    {
+        get => _SelectedDetailRow;
+        set
+        {
+            Set(ref _SelectedDetailRow, value);
+            if (!isFirstLoad && !(value == null))
+                SetCauseData(value.Id);
+        }
+    }
 
     private ObservableCollection<DataUse> _DetailTableData;
     public ObservableCollection<DataUse> DetailTableData
@@ -84,6 +95,15 @@ public class AnalysisFromCCViewModel : BaseViewModel
         set
         {
             Set(ref _DetailTableData, value);
+        }
+    }
+    private ObservableCollection<CauseDiff> _CauseTableData;
+    public ObservableCollection<CauseDiff> CauseTableData
+    {
+        get => _CauseTableData;
+        set
+        {
+            Set(ref _CauseTableData, value);
         }
     }
 
@@ -96,6 +116,17 @@ public class AnalysisFromCCViewModel : BaseViewModel
             Set(ref _DetailTableCaption, value);
         }
     }
+
+    private string _CauseCaption = "Анализ отклонений";
+    public string CauseCaption
+    {
+        get => _CauseCaption;
+        set
+        {
+            Set(ref _CauseCaption, value);
+        }
+    }
+
 
     public AnalysisFromCCViewModel()
     {
@@ -269,10 +300,12 @@ public class AnalysisFromCCViewModel : BaseViewModel
         int idcc = row.IdCC;
         int ider = row.IdER;
         string ername = row.ERName;
+        string unitname = row.UnitName;
         DetailTableData = new ObservableCollection<DataUse>(from o in DataTableUse
                                                             where o.Period == period && o.IdCC == idcc && o.IdER == ider
                                                             select new DataUse()
                                                             {
+                                                                Id = o.Id,
                                                                 IdProduct = o.IdProduct,
                                                                 ProductName = o.ProductName,
                                                                 UnitName = o.UnitName,
@@ -285,6 +318,11 @@ public class AnalysisFromCCViewModel : BaseViewModel
                                                                 DiffProc = Math.Round(o.Diff, 2) * 100 / Math.Round(o.Plan, 2)
                                                             });
         DetailTableCaption = "Распределение ресурса (" + ider.ToString() + "_" + ername + ") по продуктам";
+        CauseCaption = "Анализ отклонений, " + unitname;
+    }
+    private void SetCauseData(int iduse)
+    {
+        CauseTableData = new ObservableCollection<CauseDiff>(Models.CauseDiff.Get(iduse));
     }
 
     #endregion

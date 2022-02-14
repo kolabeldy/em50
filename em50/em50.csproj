@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="MenuPages\Analysis\FromCC\MyDetailTable - Копировать.xaml">
+    <Page Update="MenuPages\Analysis\FromCC\MyDetailTable.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
